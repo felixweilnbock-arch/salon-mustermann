@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Salon Mustermann – Friseur (Muster-Prototyp)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf6ee;--sf:#f2e6d6;--tx:#2d2219;--mu:#6e5f52;--bd:#e2d3c0;--ac:#4f5d2a;--ox:#fff;--hl:#e9a93a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1710;--sf:#2a2118;--tx:#f6ede0;--mu:#bba993;--bd:#41362a;--ac:#c5d38a;--ox:#1d1710;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1d1710;--sf:#2a2118;--tx:#f6ede0;--mu:#bba993;--bd:#41362a;--ac:#c5d38a;--ox:#1d1710;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.6 Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:1040px;margin:0 auto;padding:0 20px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0}
+.logo{display:flex;align-items:center;gap:10px;color:var(--ac);text-decoration:none}
+.logo svg{width:38px;height:38px}
+.logo b{display:block;font:400 22px/1.1 "Young Serif",Georgia,serif;color:var(--tx)}
+.logo small{display:block;font-size:13px;color:var(--mu)}
+nav.m a{margin-left:20px;color:var(--tx);text-decoration:none;font-weight:600}
+nav.m{display:none}
+@media(min-width:760px){nav.m{display:block}}
+h1,h2{font-family:"Young Serif",Georgia,serif;font-weight:400;line-height:1.1}
+h1{margin:0 0 16px;font-size:clamp(36px,6vw,58px)}
+h2{margin:0 0 20px;font-size:clamp(28px,4vw,38px)}
+h3{margin:0 0 8px;font-size:17px}
+.hero{display:grid;gap:28px;padding:16px 0 56px}
+@media(min-width:760px){.hero{grid-template-columns:1.1fr .9fr;align-items:center}}
+.hero p{max-width:480px;color:var(--mu);font-size:19px}
+.arch{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:999px 999px 14px 14px;background:var(--sf)}
+.ph{display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;color:var(--mu);background:var(--sf);border:2px dashed var(--bd)}
+.gal .ph{aspect-ratio:3/4;border-radius:10px}
+.btn{display:inline-block;margin:6px 10px 0 0;padding:13px 24px;font:inherit;font-weight:600;color:var(--ox);background:var(--ac);border:2px solid var(--ac);border-radius:999px;text-decoration:none;cursor:pointer}
+.btn.alt{color:var(--tx);background:transparent;border-color:var(--tx)}
+.btn:focus-visible,select:focus-visible,input:focus-visible,.slot:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+section{padding:56px 0}
+.sand{background:var(--sf)}
+.cols{display:grid;gap:28px}
+@media(min-width:760px){.cols{grid-template-columns:repeat(3,1fr)}}
+.pr{margin:0;padding:0;list-style:none}
+.pr li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.pr b{white-space:nowrap}
+.note{font-size:14px;color:var(--mu)}
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:760px){.gal{grid-template-columns:repeat(3,1fr)}}
+.gal img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px;background:var(--sf)}
+.card{max-width:640px;padding:24px;background:var(--bg);border-radius:14px}
+label{display:block;margin:14px 0 6px;font-size:14px;font-weight:600}
+select,input{width:100%;padding:11px 12px;font:inherit;color:var(--tx);background:var(--sf);border:1px solid var(--bd);border-radius:8px}
+.sl{display:flex;flex-wrap:wrap;gap:8px}
+.slot{padding:9px 14px;font:inherit;color:var(--tx);background:var(--sf);border:1px solid var(--bd);border-radius:8px;cursor:pointer}
+.slot.on{color:var(--ox);background:var(--ac);border-color:var(--ac)}
+.slot:disabled{opacity:.4;text-decoration:line-through;cursor:not-allowed}
+.msg{margin:16px 0 0;padding:12px 14px;background:var(--sf);border-left:4px solid var(--ac);border-radius:6px}
+.msg.err{border-color:#b3261e}
+.msg[hidden]{display:none}
+.tag{display:inline-block;margin-bottom:10px;padding:2px 10px;font-size:13px;font-weight:600;color:#2d2219;background:var(--hl);border-radius:999px}
+.hrs{margin:0;padding:0;list-style:none}
+.hrs li{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--bd)}
+a{color:var(--ac)}
+footer{padding:28px 0 90px;font-size:14px;color:var(--mu);border-top:1px solid var(--bd)}
+.bar{position:fixed;left:0;right:0;bottom:0;display:flex;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--bd)}
+.bar a{flex:1;margin:0;text-align:center}
+@media(min-width:760px){.bar{display:none}footer{padding-bottom:40px}}
+</style>
+</head>
+<body>
+<div class="w">
+<header class="top">
+<a class="logo" href="#" aria-label="Salon Mustermann, Startseite">
+<svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="20" cy="20" r="18.5" stroke-width="1.6"/><path d="M14 8l12 15M26 8L14 23"/><circle cx="13" cy="27.5" r="3.6"/><circle cx="27" cy="27.5" r="3.6"/></svg>
+<span><b>Mustermann</b><small>Friseur Salon</small></span>
+</a>
+<nav class="m"><a href="#leistungen">Preise</a><a href="#galerie">Salon</a><a href="#termin">Termin</a><a href="#kontakt">Kontakt</a></nav>
+</header>
+
+<main>
+<div class="hero">
+<div>
+<h1>Ein Schnitt, bei dem du dich gut aufgehoben fühlst.</h1>
+<p>Im Salon Mustermann nehmen wir uns Zeit für Damen, Herren und Kinder. Mit ehrlicher Beratung und ohne Hektik.</p>
+<a class="btn" href="#termin">Termin buchen</a>
+<a class="btn alt" href="tel:01234567890">01234 567890</a>
+</div>
+<div class="arch ph"><span>Hier könnte Ihr Bild vom Salon sein</span></div>
+</div>
+</main>
+</div>
+
+<section id="leistungen" class="sand"><div class="w">
+<h2>Leistungen und Preise</h2>
+<div class="cols" id="pl"></div>
+<p class="note">Musterpreise für den Prototyp. Die echten Preise legt der Salon fest.</p>
+</div></section>
+
+<section id="galerie"><div class="w">
+<h2>Unser Salon</h2>
+<div class="gal"><div class="ph"><span>Hier könnte Ihr Bild vom Salon sein</span></div><div class="ph"><span>Hier könnte Ihr Bild vom Salon sein</span></div><div class="ph"><span>Hier könnte Ihr Bild vom Salon sein</span></div><div class="ph"><span>Hier könnte Ihr Bild vom Salon sein</span></div><div class="ph"><span>Hier könnte Ihr Bild vom Salon sein</span></div><div class="ph"><span>Hier könnte Ihr Bild vom Salon sein</span></div></div>
+<p class="note">Platzhalter: Hier kommen die echten Fotos des Salons hin.</p>
+</div></section>
+
+<section id="termin" class="sand"><div class="w">
+<span class="tag">Demo</span>
+<h2>Online Termin reservieren</h2>
+<div class="card">
+<label for="sv">Leistung</label><select id="sv"></select>
+<label for="dy">Tag</label><select id="dy"></select>
+<label>Uhrzeit (durchgestrichen = belegt)</label><div class="sl" id="sl"></div>
+<label for="nm">Name</label><input id="nm" autocomplete="name">
+<label for="ph">Telefon</label><input id="ph" type="tel" autocomplete="tel">
+<p><button class="btn" type="button" id="go">Termin anfragen</button></p>
+<p class="msg" id="msg" hidden></p>
+</div>
+<p class="note">Prototyp mit Beispieldaten. In der echten Version wird hier ein Buchungsdienst eines Drittanbieters eingebunden, damit der Inhaber alle Termine in dessen App sieht.</p>
+</div></section>
+
+<section id="kontakt"><div class="w">
+<h2>Kontakt und Öffnungszeiten</h2>
+<div class="cols">
+<div>
+<h3>Salon Mustermann</h3>
+<p>Inhaber: Max Mustermann<br>Musterstraße 1, 12345 Musterstadt<br><span class="note">(Beispieladresse)</span></p>
+<p><a href="tel:01234567890">01234 567890</a><br><a href="mailto:max.mustermann@beispiel.de">max.mustermann@beispiel.de</a></p>
+</div>
+<div>
+<h3>Öffnungszeiten</h3>
+<ul class="hrs"><li><span>Montag bis Freitag</span><b>9 bis 12:30 Uhr</b></li><li><span></span><b>14 bis 17 Uhr</b></li><li><span>Samstag, Sonntag</span><span>geschlossen</span></li></ul>
+</div>
+<div>
+<h3>Folge uns</h3>
+<p>Neue Frisuren und Einblicke in den Salon findest du auf Instagram.</p>
+<a class="btn alt" href="https://www.instagram.com/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="vertical-align:-2px;margin-right:6px"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</a>
+<p class="note">Beispiellink</p>
+</div>
+</div>
+</div></section>
+
+<footer><div class="w">© Salon Mustermann. Impressum und Datenschutz werden vor der Veröffentlichung ergänzt.</div></footer>
+
+<nav class="bar" aria-label="Schnellaktionen"><a class="btn" href="#termin">Termin buchen</a><a class="btn alt" href="tel:01234567890">Anrufen</a></nav>
+
+<script>
+const $=id=>document.getElementById(id);
+const SV=[["Damen","Waschen, Schneiden, Föhnen","ab 48 €"],["Damen","Färben (Ansatz)","ab 62 €"],["Damen","Strähnen oder Balayage","ab 85 €"],["Damen","Hochsteck- und Festfrisur","ab 55 €"],["Herren","Haarschnitt","ab 26 €"],["Herren","Haarschnitt und Bart","ab 34 €"],["Kinder","Haarschnitt bis 12 Jahre","ab 18 €"]];
+["Damen","Herren","Kinder"].forEach(g=>{const c=document.createElement("div"),h=document.createElement("h3"),ul=document.createElement("ul");h.textContent=g;ul.className="pr";
+ SV.filter(s=>s[0]==g).forEach(s=>{const li=document.createElement("li"),a=document.createElement("span"),b=document.createElement("b");a.textContent=s[1];b.textContent=s[2];li.append(a,b);ul.appendChild(li)});
+ c.append(h,ul);$("pl").appendChild(c)});
+const sv=$("sv");SV.forEach((s,i)=>{const o=document.createElement("option");o.value=i;o.textContent=s[0]+": "+s[1]+" ("+s[2]+")";sv.appendChild(o)});
+const days=[];{const d=new Date();d.setHours(0,0,0,0);while(days.length<10){d.setDate(d.getDate()+1);if(d.getDay()%6)days.push(new Date(d))}}
+const fmt=d=>d.toLocaleDateString("de-DE",{weekday:"short",day:"2-digit",month:"2-digit"});
+const dy=$("dy");days.forEach((d,i)=>{const o=document.createElement("option");o.value=i;o.textContent=fmt(d);dy.appendChild(o)});
+const TM=["09:00","09:30","10:00","10:30","11:00","11:30","12:00","14:00","14:30","15:00","15:30","16:00","16:30"];let sel=null;
+function slots(){const di=+dy.value;sel=null;$("sl").textContent="";
+ TM.forEach((t,i)=>{const b=document.createElement("button");b.type="button";b.textContent=t;b.className="slot";
+  if((di*7+i*3)%5==0){b.disabled=true;b.title="belegt"}else b.onclick=()=>{sel=t;document.querySelectorAll(".slot").forEach(x=>x.classList.remove("on"));b.classList.add("on")};
+  $("sl").appendChild(b)})}
+dy.onchange=slots;slots();
+$("go").onclick=()=>{const n=$("nm").value.trim(),p=$("ph").value.trim(),m=$("msg");m.hidden=false;
+ if(!sel||!n||!p){m.className="msg err";m.textContent="Bitte Uhrzeit, Name und Telefonnummer angeben.";return}
+ m.className="msg";m.textContent="Danke, "+n+"! Dein Wunschtermin: "+fmt(days[+dy.value])+", "+sel+" Uhr, "+SV[+sv.value][1]+". Das ist eine Demo: In der echten Version erscheint die Buchung direkt in der App des Salons."};
+</script>
+</body>
+</html>
